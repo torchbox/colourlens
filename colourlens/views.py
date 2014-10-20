@@ -93,20 +93,23 @@ def index(request, institution=False):
     )
 
     artworks = artworks.order_by('-tot_presence').distinct()
+    artworks_count = artworks.count()
 
     if req_colours:
         colour_filters['artwork__id__in'] = [a.id for a in artworks[:990]]
         colour_filters['colourdistance__distance__lte'] = DISTANCE
 
-    found_works = artworks.count()
     colours = colours.filter(**colour_filters)
     colours = colours.annotate(Count('artwork', distinct=True)).order_by('hue')
-    total_palette = reduce(
-        lambda x, y: x+y,
-        [c.artwork__count for c in colours]
-    )
     colour_count = colours.count()
+
     colour_width = 99.4 / colour_count
+
+    if colour_count > 0:
+        total_palette = sum(c.artwork__count for c in colours)
+    else: 
+        total_palette = 0
+
     institutions = Artwork.objects.all().values('institution').distinct()
 
     return render(request, 'colour.html', {
@@ -115,7 +118,7 @@ def index(request, institution=False):
         'colour_count': colour_count,
         'colour_width': colour_width,
         'total_palette': total_palette,
-        'found': found_works,
+        'found': artworks_count,
         'institution': institution,
         'institutions': institutions,
         'req_colours': req_colours,
