@@ -100,7 +100,7 @@ class ArtColour:
                 desired_rgb = color[0]
 
                 target = RGBColor(*desired_rgb)
-                cdist = target.delta_e(RGBColor(*self.rgb), method="cmc")
+                cdist = target.delta_e(RGBColor(*self.rgb), method='cmc')
 
                 if self.nearest is None or cdist < self.shortest_distance:
                     self.nearest = name
@@ -136,9 +136,9 @@ class ArtColour:
         return None
 
     def ansi_number(self, r, g, b):
-        '''
+        """
         Convert an RGB colour to 256 colour ANSI graphics.
-        '''
+        """
         grey = False
         poss = True
         step = 2.5
@@ -165,7 +165,7 @@ class ArtColour:
         hsv = self.rgb_to_hsv(*snapped_rgb)
         target = RGBColor(*snapped_rgb)
         original = RGBColor(*self.rgb)
-        cdist = target.delta_e(original, method="cmc")
+        cdist = target.delta_e(original, method='cmc')
         prom = Decimal(self.prominence).quantize(TWOPLACES)
         dist = Decimal(cdist).quantize(TWOPLACES)
         ELITE = False

@@ -39,7 +39,7 @@ class Artwork(models.Model):
     image_url = models.URLField(blank=True)
     institution = models.CharField(blank=True, max_length=10, db_index=True)
     proportions = models.TextField(blank=True)
-    colours = models.ManyToManyField(Colour, through="ColourDistance")
+    colours = models.ManyToManyField(Colour, through='ColourDistance')
 
     def colour_parts(self):
         if self.proportions:

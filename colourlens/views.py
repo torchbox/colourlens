@@ -85,11 +85,11 @@ def index(request, institution=False):
         colour_filters['artwork__institution'] = institution
 
     artworks = artworks.annotate(
-        ave_distance=Avg("colourdistance__distance"),
-        ave_presence=Avg("colourdistance__presence"),
-        tot_presence=Sum("colourdistance__presence"),
-        tot_prominence=Sum("colourdistance__prominence"),
-        ave_prominence=Avg("colourdistance__prominence"),
+        ave_distance=Avg('colourdistance__distance'),
+        ave_presence=Avg('colourdistance__presence'),
+        tot_presence=Sum('colourdistance__presence'),
+        tot_prominence=Sum('colourdistance__prominence'),
+        ave_prominence=Avg('colourdistance__prominence'),
     )
 
     artworks = artworks.order_by('-tot_presence').distinct()
