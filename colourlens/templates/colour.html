@@ -25,7 +25,9 @@
         {% for c in colours %}{% spaceless %}
           <div style="width: {{ colour_width|floatformat:2 }}%; background-color: {{ c.hex_value }};">
             <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{ c.hex_value|urlencode }}">{{ c.artwork__count }}</a>
-            {% if c.hex_value in req_colours %}<span class="selected" style="background-color:{{ c.hex_value }};"></span>{% else %}{% endif %}  
+            {% if c.hex_value in req_colours %}
+              <span class="selected" style="background-color:{{ c.hex_value }};"></span>
+            {% endif %}  
           </div>
         {% endspaceless %}{% endfor %}
       </div>
