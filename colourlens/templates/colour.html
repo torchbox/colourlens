@@ -40,41 +40,10 @@
           {% endfor %}
         </p>
       </div>
-      <ul class="explorerWorks explorerGrid">
-        {% for a in artworks|slice:":24" %}
-          <li class="grid-work">
-            <div class="grid-work-image">
-              <a title="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" href="{{ a.url }}"  style="background-image: url({{ a.image_url }});">
-                <img alt="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" src="{{ a.image_url }}"
-                />
-              </a>
-            </div>
-            <h3>{{ a.title|truncatechars:25 }}</h3>
-            <span class="institution">{{ a.institution }}</span>    
-            <p class="artist"><em>{{ a.artist|truncatechars:25 }}</em></p>
-            <p class="signature">{% for h, pc in a.colour_parts %}<span style="width: {{ pc|floatformat:2 }}%; background-color:{{ h }};"></span>{% endfor %}</p>
-          </li>
-        {% endfor %}
-      </ul>
-      <p>Inpired by and created at <a href="http://metalab.harvard.edu/2014/01/beautiful-data-a-summer-institute-for-telling-stories-with-open-art-collections/">metaLAB</a>, featuring Public Domain images from the Rijksmuseum and the Walters Art Museum, others with permission from the Wolfsonian-FIU, and code from Tate and the Cooper-Hewitt. <a href="http://github.com/richbs/colourlens">Fork me on Github</a>.</p>
+      {% include "includes/artworks.html" with artworks=artworks|slice:":24" %}
     </div>
     <div class="section">
-      <ul class="explorerWorks explorerGrid">
-        {% for a in artworks|slice:"16:48" %}
-          <li class="grid-work">
-            <div class="grid-work-image">
-              <a title="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" href="{{ a.url }}"  style="background-image: url({{ a.image_url }});">
-                <img alt="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" src="{{ a.image_url }}" />
-              </a>    
-            </div>
-            <h3>{{ a.title|truncatechars:25 }}</h3>
-            <span class="institution">{{ a.institution }}</span>    
-            <p class="artist"><em>{{ a.artist|truncatechars:25 }}</em></p>
-            <p class="signature">{% for h, pc in a.colour_parts %}<span style="width: {{ pc|floatformat:2 }}%; background-color:{{ h }};"></span>{% endfor %}</p>
-          </li>
-        {% endfor %}
-      </ul>
-      <p>Inpired by and created at <a href="http://metalab.harvard.edu/2014/01/beautiful-data-a-summer-institute-for-telling-stories-with-open-art-collections/">metaLAB</a>, featuring Public Domain images from the Rijksmuseum and the Walters Art Museum, others with permission from the Wolfsonian-FIU, and code from Tate and the Cooper-Hewitt. <a href="http://github.com/richbs/colourlens">Fork me on Github</a>.</p>
+      {% include "includes/artworks.html" with artworks=artworks|slice:"16:48" %}
     </div>    
   </div>
 {% endblock %}
