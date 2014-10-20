@@ -37,6 +37,19 @@ body {
   display: block;
 }
 
+#colour-list > div, #colour-page > div {
+  height: 100px;
+  margin: 0;
+  padding: 0;
+  display: inline-block;
+}
+
+#colour-list span.selected {
+  width: 100%;
+  height: 3px;
+  margin: 6px auto 0 auto; 
+}
+
 #header * {
   display: inline-block;
   margin-right: 20px;
