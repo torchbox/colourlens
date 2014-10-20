@@ -13,11 +13,11 @@
   <div id="fullpage">
     <div class="section">
       <div id="colour-page">
-      {% for c in colours %}{% spaceless %}
-        <div style="width: {{ colour_width|floatformat:2 }}%; height:100px; margin:0; padding:0; background-color:{{ c.hex_value }}; display:inline-block;">
-          <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{ c.hex_value|urlencode }}">{{ c.artwork__count }}</a>
-        </div>
-      {% endspaceless %}{% endfor %}
+        {% for c in colours %}{% spaceless %}
+          <div style="width: {{ colour_width|floatformat:2 }}%; height:100px; margin:0; padding:0; background-color:{{ c.hex_value }}; display:inline-block;">
+            <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{ c.hex_value|urlencode }}">{{ c.artwork__count }}</a>
+          </div>
+        {% endspaceless %}{% endfor %}
       </div>
     </div>
     <div class="section active">
