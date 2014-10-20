@@ -1,8 +1,7 @@
 from django.db.models import Avg, Sum, Count
 from django import forms
 from django.forms.widgets import Input
-from django.http import HttpResponse
-from django.template import RequestContext, loader
+from django.shortcuts import render
 from django.views.decorators.cache import cache_page
 from colourlens.models import Artwork, Colour
 
@@ -108,8 +107,8 @@ def index(request, institution=False):
     colour_count = colours.count()
     colour_width = 99.4 / colour_count
     institutions = Artwork.objects.all().values('institution').distinct()
-    t = loader.get_template("colour.html")
-    context_data = {
+
+    return render(request, 'colour.html', {
         'artworks': artworks[:40],
         'colours': colours,
         'colour_count': colour_count,
@@ -119,7 +118,4 @@ def index(request, institution=False):
         'institution': institution,
         'institutions': institutions,
         'req_colours': req_colours,
-    }
-    c = RequestContext(request, context_data)
-
-    return HttpResponse(t.render(c))
+    })
