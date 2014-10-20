@@ -1,86 +1,97 @@
 {% extends "base.html" %}
-
 {% load staticfiles %}
 
+
 {% block title %}Colour Lens{% endblock title %}
+
 
 {% block body_id %}colour-browse{% endblock %}
 {% block body_class %}full-page-colour{% endblock  %}
 
+
 {% block content %}
-<div id="fullpage">
-  <div class="section">
-    <div id="colour-page">
-    {% for c in colours %}<div style="width: {{ colour_width|floatformat:2 }}%; height:100px; margin:0; padding:0; background-color:{{ c.hex_value}}; display:inline-block;">
-      <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{c.hex_value|urlencode}}">{{ c.artwork__count }}</a>
-    </div>{% endfor %}
-    </div>
-  </div>
-  <div class="section active">
-    <div id="colour-list">
-      {% for c in colours %}<div style="width: {{ colour_width|floatformat:2 }}%; height:100px; margin:0; padding:0; background-color:{{ c.hex_value}}; display:inline-block;">
-        <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{c.hex_value|urlencode}}">{{ c.artwork__count }}</a>
-        {% if c.hex_value in req_colours %}<span class="selected" style="width:100%; height:3px; margin:6px auto 0 auto; background-color:{{ c.hex_value }};"></span>{% else %}{% endif %}  
-      </div>{% endfor %}
-    </div>
-    <div id="header">
-      <h1 id="colour_me_bad">Colour Lens</h1>
-      <p>An experiment in visualisation as navigation</p>
-      <em>{{found}} results</em><h2>{{ colour_count }} colours in this set</h2>
-      <p id="institution-nav">
-        <a class="{% if not institution %}selected{% endif %}" href="{% url 'colour_index' %}">ALL</a>
-        {% for i in institutions %}
-        <a class="{% ifequal institution i.institution %}selected{% endifequal %}" href="{% url 'colour_index' %}{{ i.institution|urlencode }}">{{ i.institution|upper }}</a>
-      {% endfor %}</p>
-    </div>
-    <ul class="explorerWorks explorerGrid">
-      {% for a in artworks|slice:":24" %}
-      <li class="grid-work">
-        <div class="grid-work-image">
-          <a title="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" href="{{ a.url }}"  style="background-image: url({{ a.image_url }});">
-            <img alt="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" src="{{ a.image_url }}"
-            />
-          </a>
+  <div id="fullpage">
+    <div class="section">
+      <div id="colour-page">
+      {% for c in colours %}{% spaceless %}
+        <div style="width: {{ colour_width|floatformat:2 }}%; height:100px; margin:0; padding:0; background-color:{{ c.hex_value}}; display:inline-block;">
+          <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{c.hex_value|urlencode}}">{{ c.artwork__count }}</a>
         </div>
-        <h3>{{ a.title|truncatechars:25 }}</h3>
-        <span class="institution">{{ a.institution }}</span>    
-        <p class="artist"><em>{{ a.artist|truncatechars:25 }}</em></p>
-        <p class="signature">{% for h, pc in a.colour_parts %}<span style="width: {{ pc|floatformat:2 }}%; background-color:{{ h }};"></span>{% endfor %}</p>
-      </li>
-      {% endfor %}
-    </ul>
-    <p>Inpired by and created at <a href="http://metalab.harvard.edu/2014/01/beautiful-data-a-summer-institute-for-telling-stories-with-open-art-collections/">metaLAB</a>, featuring Public Domain images from the Rijksmuseum and the Walters Art Museum, others with permission from the Wolfsonian-FIU, and code from Tate and the Cooper-Hewitt. <a href="http://github.com/richbs/colourlens">Fork me on Github</a>.</p>
+      {% endspaceless %}{% endfor %}
+      </div>
+    </div>
+    <div class="section active">
+      <div id="colour-list">
+        {% for c in colours %}{% spaceless %}
+          <div style="width: {{ colour_width|floatformat:2 }}%; height:100px; margin:0; padding:0; background-color:{{ c.hex_value}}; display:inline-block;">
+            <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{c.hex_value|urlencode}}">{{ c.artwork__count }}</a>
+            {% if c.hex_value in req_colours %}<span class="selected" style="width:100%; height:3px; margin:6px auto 0 auto; background-color:{{ c.hex_value }};"></span>{% else %}{% endif %}  
+          </div>
+        {% endspaceless %}{% endfor %}
+      </div>
+      <div id="header">
+        <h1 id="colour_me_bad">Colour Lens</h1>
+        <p>An experiment in visualisation as navigation</p>
+        <em>{{found}} results</em><h2>{{ colour_count }} colours in this set</h2>
+        <p id="institution-nav">
+          <a class="{% if not institution %}selected{% endif %}" href="{% url 'colour_index' %}">ALL</a>
+          {% for i in institutions %}
+            <a class="{% ifequal institution i.institution %}selected{% endifequal %}" href="{% url 'colour_index' %}{{ i.institution|urlencode }}">{{ i.institution|upper }}</a>
+          {% endfor %}
+        </p>
+      </div>
+      <ul class="explorerWorks explorerGrid">
+        {% for a in artworks|slice:":24" %}
+          <li class="grid-work">
+            <div class="grid-work-image">
+              <a title="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" href="{{ a.url }}"  style="background-image: url({{ a.image_url }});">
+                <img alt="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" src="{{ a.image_url }}"
+                />
+              </a>
+            </div>
+            <h3>{{ a.title|truncatechars:25 }}</h3>
+            <span class="institution">{{ a.institution }}</span>    
+            <p class="artist"><em>{{ a.artist|truncatechars:25 }}</em></p>
+            <p class="signature">{% for h, pc in a.colour_parts %}<span style="width: {{ pc|floatformat:2 }}%; background-color:{{ h }};"></span>{% endfor %}</p>
+          </li>
+        {% endfor %}
+      </ul>
+      <p>Inpired by and created at <a href="http://metalab.harvard.edu/2014/01/beautiful-data-a-summer-institute-for-telling-stories-with-open-art-collections/">metaLAB</a>, featuring Public Domain images from the Rijksmuseum and the Walters Art Museum, others with permission from the Wolfsonian-FIU, and code from Tate and the Cooper-Hewitt. <a href="http://github.com/richbs/colourlens">Fork me on Github</a>.</p>
+    </div>
+    <div class="section">
+      <ul class="explorerWorks explorerGrid">
+        {% for a in artworks|slice:"16:48" %}
+          <li class="grid-work">
+            <div class="grid-work-image">
+              <a title="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" href="{{ a.url }}"  style="background-image: url({{ a.image_url }});">
+                <img alt="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" src="{{ a.image_url }}" />
+              </a>    
+            </div>
+            <h3>{{ a.title|truncatechars:25 }}</h3>
+            <span class="institution">{{ a.institution }}</span>    
+            <p class="artist"><em>{{ a.artist|truncatechars:25 }}</em></p>
+            <p class="signature">{% for h, pc in a.colour_parts %}<span style="width: {{ pc|floatformat:2 }}%; background-color:{{ h }};"></span>{% endfor %}</p>
+          </li>
+        {% endfor %}
+      </ul>
+      <p>Inpired by and created at <a href="http://metalab.harvard.edu/2014/01/beautiful-data-a-summer-institute-for-telling-stories-with-open-art-collections/">metaLAB</a>, featuring Public Domain images from the Rijksmuseum and the Walters Art Museum, others with permission from the Wolfsonian-FIU, and code from Tate and the Cooper-Hewitt. <a href="http://github.com/richbs/colourlens">Fork me on Github</a>.</p>
+    </div>    
   </div>
-  <div class="section">
-    <ul class="explorerWorks explorerGrid">
-      {% for a in artworks|slice:"16:48" %}
-      <li class="grid-work">
-        <div class="grid-work-image">
-          <a title="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" href="{{ a.url }}"  style="background-image: url({{ a.image_url }});">
-            <img alt="{{ a.institution }}: {{ a.artist }}: {{ a.title }} {{ a.year }}" src="{{ a.image_url }}" />
-          </a>    
-        </div>
-        <h3>{{ a.title|truncatechars:25 }}</h3>
-        <span class="institution">{{ a.institution }}</span>    
-        <p class="artist"><em>{{ a.artist|truncatechars:25 }}</em></p>
-        <p class="signature">{% for h, pc in a.colour_parts %}<span style="width: {{ pc|floatformat:2 }}%; background-color:{{ h }};"></span>{% endfor %}</p>
-      </li>
-      {% endfor %}
-    </ul>
-    <p>Inpired by and created at <a href="http://metalab.harvard.edu/2014/01/beautiful-data-a-summer-institute-for-telling-stories-with-open-art-collections/">metaLAB</a>, featuring Public Domain images from the Rijksmuseum and the Walters Art Museum, others with permission from the Wolfsonian-FIU, and code from Tate and the Cooper-Hewitt. <a href="http://github.com/richbs/colourlens">Fork me on Github</a>.</p>
-  </div>    
-</div>
 {% endblock %}
-{% block extrascript %}
-<script src="{% static 'vendors/jquery.easings.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'jquery.fullPage.min.js' %}"></script>
-<script type="text/javascript" src="{% static 'colourlens/main.js' %}"></script>
-<script type="text/javascript">
-  window.totalPalette = {{ total_palette }};
-</script>
-{% endblock %}
+
+
 {% block extrahead %}
-<link rel="stylesheet" href="{% static 'jquery.fullPage.css' %}" type="text/css">
-<link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
-<link href="{% static 'colourlens/style.css' %}" rel='stylesheet' type='text/css'>
-{% endblock extrahead %}
+  <link rel="stylesheet" href="{% static 'jquery.fullPage.css' %}" type="text/css">
+  <link href='http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link href="{% static 'colourlens/style.css' %}" rel='stylesheet' type='text/css'>
+{% endblock %}
+
+
+{% block extrascript %}
+  <script src="{% static 'vendors/jquery.easings.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'jquery.fullPage.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'colourlens/main.js' %}"></script>
+  <script type="text/javascript">
+    window.totalPalette = {{ total_palette }};
+  </script>
+{% endblock %}
