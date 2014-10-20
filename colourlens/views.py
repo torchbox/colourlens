@@ -1,3 +1,4 @@
+import urllib
 from django.db.models import Avg, Sum, Count
 from django import forms
 from django.forms.widgets import Input
@@ -50,6 +51,34 @@ class ColourForm(forms.Form):
     distance = forms.IntegerField(label="Broaden palette",
                                   widget=RangeInput(attrs=DIST_ATTRS))
     submitted = forms.CharField(widget=forms.HiddenInput())
+
+
+class ColourChoice(object):
+    def __init__(self, selected_colours, colour):
+        self.selected_colours = selected_colours
+        self.colour = colour
+
+    @property
+    def artwork_count(self):
+        return self.colour.artwork__count
+
+    @property
+    def hex_value(self):
+        return self.colour.hex_value
+
+    @property
+    def query_string(self):
+        # Get new set of selected colours
+        if self.colour.hex_value in self.selected_colours:
+            new_selected_colours = self.selected_colours.difference(set([self.colour.hex_value]))
+        else:
+            new_selected_colours = self.selected_colours.union(set([self.colour.hex_value]))
+
+        if new_selected_colours:
+            return urllib.urlencode([
+                ('colour', colour)
+                for colour in new_selected_colours
+            ])
 
 
 @cache_page(60 * 60)
@@ -114,7 +143,7 @@ def index(request, institution=False):
 
     return render(request, 'colour.html', {
         'artworks': artworks[:40],
-        'colours': colours,
+        'colours': [ColourChoice(set(req_colours), colour) for colour in colours],
         'colour_count': colour_count,
         'colour_width': colour_width,
         'total_palette': total_palette,
