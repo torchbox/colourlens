@@ -14,8 +14,8 @@
     <div class="section">
       <div id="colour-page">
       {% for c in colours %}{% spaceless %}
-        <div style="width: {{ colour_width|floatformat:2 }}%; height:100px; margin:0; padding:0; background-color:{{ c.hex_value}}; display:inline-block;">
-          <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{c.hex_value|urlencode}}">{{ c.artwork__count }}</a>
+        <div style="width: {{ colour_width|floatformat:2 }}%; height:100px; margin:0; padding:0; background-color:{{ c.hex_value }}; display:inline-block;">
+          <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{ c.hex_value|urlencode }}">{{ c.artwork__count }}</a>
         </div>
       {% endspaceless %}{% endfor %}
       </div>
@@ -23,8 +23,8 @@
     <div class="section active">
       <div id="colour-list">
         {% for c in colours %}{% spaceless %}
-          <div style="width: {{ colour_width|floatformat:2 }}%; height:100px; margin:0; padding:0; background-color:{{ c.hex_value}}; display:inline-block;">
-            <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{c.hex_value|urlencode}}">{{ c.artwork__count }}</a>
+          <div style="width: {{ colour_width|floatformat:2 }}%; height:100px; margin:0; padding:0; background-color:{{ c.hex_value }}; display:inline-block;">
+            <a href="{{ request.get_full_path }}{% if '?' in request.get_full_path %}&amp;{% else %}?{% endif %}colour={{ c.hex_value|urlencode }}">{{ c.artwork__count }}</a>
             {% if c.hex_value in req_colours %}<span class="selected" style="width:100%; height:3px; margin:6px auto 0 auto; background-color:{{ c.hex_value }};"></span>{% else %}{% endif %}  
           </div>
         {% endspaceless %}{% endfor %}
@@ -32,7 +32,7 @@
       <div id="header">
         <h1 id="colour_me_bad">Colour Lens</h1>
         <p>An experiment in visualisation as navigation</p>
-        <em>{{found}} results</em><h2>{{ colour_count }} colours in this set</h2>
+        <em>{{ found }} results</em><h2>{{ colour_count }} colours in this set</h2>
         <p id="institution-nav">
           <a class="{% if not institution %}selected{% endif %}" href="{% url 'colour_index' %}">ALL</a>
           {% for i in institutions %}
