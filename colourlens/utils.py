@@ -34,7 +34,6 @@ TWOPLACES = Decimal(10) ** -2
 
 
 class ArtColour:
-
     hsv = ()
     rgb = ()
     hex_value = ()
@@ -48,7 +47,6 @@ class ArtColour:
     prominence = None
 
     def __init__(self, r, g, b, prominence):
-
         self.rgb = (r, g, b)
         self.prominence = prominence
         (self.red, self.blue, self.green) = (r, g, b)
@@ -62,15 +60,14 @@ class ArtColour:
         self.nearest_hex = None
 
     def rgb_to_hsv(self, r, g, b):
-
         fracs = [ch/255.0 for ch in (r, g, b)]
         hsv = colorsys.rgb_to_hsv(*fracs)
+
         return (int(round(hsv[0] * 360)),
                 int(round(hsv[1] * 100)),
                 int(round(hsv[2] * 100)))
 
     def hsv_to_rgb(self, h, s, v):
-
         rgb = colorsys.hsv_to_rgb(h/360.0, s/100.0, v/100.0)
 
         return (int(round(rgb[0] * 255)),
@@ -78,9 +75,9 @@ class ArtColour:
                 int(round(rgb[2] * 255)))
 
     def rgb_reduce(self, r, g, b):
-
         reduced_rgb = [int(6 * float(val) / 256)
                        * (256/6) for val in (r, g, b)]
+
         return tuple(reduced_rgb)
 
     def spin(self, deg):
@@ -90,13 +87,14 @@ class ArtColour:
     def color(self):
         if self._color is None:
             self._color = self._get_color()
+
         return self._color
 
     def _get_color(self):
-
         self.nearest = None
         self.shortest_distance = 100
         chosen_name = None
+
         for color_dict in (COLOURS, GREYSCALE):
             for name, color in color_dict.iteritems():
                 desired_rgb = color[0]
@@ -120,6 +118,7 @@ class ArtColour:
                     hue_hi = self.spin(hue_hi)
                 else:
                     h = self.hue
+
                 sat_range = color[2] or DEFAULT_SAT
                 val_range = color[3] or DEFAUL_VAL
 
@@ -131,6 +130,7 @@ class ArtColour:
                     self.distance = cdist
                     chosen_name = name
                     self.nearest_hex = webcolors.rgb_to_hex(self.nearest_rgb)
+
                     return chosen_name
 
         return None
@@ -155,10 +155,10 @@ class ArtColour:
         else:
             colour = sum([16] + [int((6 * float(val) / 256)) * mod
                          for val, mod in ((r, 36), (g, 6), (b, 1))])
+
         return colour
 
     def hex_me_up(self):
-
         self.hex_value = webcolors.rgb_to_hex(self.rgb)
         snapped, colour_name = swatchbook.load_palette('css3').closest_delta_e(self.hex_value)
         snapped_rgb = webcolors.hex_to_rgb(snapped)

@@ -69,6 +69,7 @@ def index(request, institution=False):
     if startyear:
         artworks = artworks.filter(year__gte=startyear)
         colour_filters['artwork__year__gte'] = startyear
+
     if endyear:
         artworks = artworks.filter(year__lte=endyear)
         colour_filters['artwork__year__lte'] = endyear

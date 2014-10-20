@@ -31,7 +31,6 @@ class Artwork(models.Model):
     """
     An image of an artwork number with an accession (reference) number
     """
-
     accession_number = models.CharField(unique=True, max_length=100)
     title = models.CharField(blank=True, max_length=100)
     artist = models.CharField(blank=True, max_length=100)
@@ -43,7 +42,6 @@ class Artwork(models.Model):
     colours = models.ManyToManyField(Colour, through="ColourDistance")
 
     def colour_parts(self):
-
         if self.proportions:
             return json.loads(self.proportions)
         else:
@@ -57,15 +55,19 @@ class Artwork(models.Model):
         except IOError, e:
             print e
             return None
+
         aw = Artwork.from_file(
             accession_number,
             institution,
             io.BytesIO(im_bytes)
         )
+
         if not aw:
             return None
+
         aw.image_url = image_url
         aw.save()
+
         return aw
 
     @classmethod
@@ -77,12 +79,15 @@ class Artwork(models.Model):
         aw.colourdistance_set.all().delete()
         aw.title = institution + accession_number
         aw.image_url = "file://%s" % filename
+
         try:
             roy_im = Roygbiv(filename)
         except IOError, e:
             print e
             return None
+
         p = roy_im.get_palette()
+
         for palette_colour in p.colors:
             prominence = round(palette_colour.prominence, 3)
             c = ArtColour(*palette_colour.value, prominence=prominence)
@@ -104,9 +109,12 @@ class Artwork(models.Model):
                     d2 = dist * (prom / total_area)
                     cd.distance = d1 + d2
                     cd.prominence = total_area
+
             cd.save()
             css.save()
+
         aw.save()
+
         return aw
 
     def __unicode__(self):
@@ -159,13 +167,14 @@ def calculate_colour_presence(sender, instance, **kwargs):
     """
     if instance.prominence < 0.01:
         instance.prominence = 0.01
-    if instance.distance and instance.prominence:
 
+    if instance.distance and instance.prominence:
         dist = Decimal(instance.distance)
         prom = Decimal(instance.prominence)
         distsqrt = math.sqrt(dist)
         presence = prom * 100 / 4 / Decimal(distsqrt)
         instance.presence = Decimal(presence).quantize(TWOPLACES)
+
 
 pre_save.connect(calculate_colour_presence, sender=ColourDistance)
 pre_save.connect(artwork_proportions, sender=Artwork)
