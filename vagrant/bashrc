@@ -1,0 +1,13 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+
+# User specific aliases and functions
+alias dj="/home/vagrant/venv/bin/python /vagrant/manage.py"
+alias djrun="dj runserver 0.0.0.0:8000"
+
+source /vagrant/venv/bin/activate
+cd /vagrant
