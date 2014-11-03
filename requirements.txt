@@ -1,4 +1,4 @@
-Django<=1.7
+Django<=1.8
 -e git://github.com/richbs/RoyGBiv.git#egg=roygbiv
 -e git://github.com/richbs/py-cooperhewitt-swatchbook.git#egg=cooperhewitt
 colormath<2
