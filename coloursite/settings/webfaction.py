@@ -1,5 +1,5 @@
 # Django settings for coloursite project.
-from settings import *
+from .base import *
 
 import os
 BASE_DIR = os.path.dirname(__file__)
