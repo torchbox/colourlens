@@ -4,7 +4,7 @@ sudo apt-get install -y build-essential python-setuptools python-dev git postgre
 
 # Database setup
 su - postgres -c "createuser -s vagrant"
-createdb colourlens
+su - vagrant -c "createdb colourlens"
 
 
 # Virtualenv setup
