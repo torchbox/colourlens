@@ -12,3 +12,4 @@ src
 *.sqlite
 *.bak
 *~
+*.swp
