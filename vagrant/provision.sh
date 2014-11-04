@@ -1,5 +1,7 @@
-sudo apt-get update
-sudo apt-get install -y build-essential python-setuptools python-dev git postgresql libpq-dev
+apt-get update -y
+apt-get install -y build-essential python-setuptools python-dev git
+apt-get install -y libjpeg-dev libtiff-dev zlib1g-dev libfreetype6-dev liblcms2-dev
+apt-get install -y postgresql libpq-dev
 
 
 # Database setup
