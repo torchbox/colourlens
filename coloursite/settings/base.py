@@ -14,8 +14,13 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': os.path.join(BASE_DIR, 'colourlens.sqlite'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'colourlens',
+        'USER': '',
+        'HOST': '', # Set to empty string for localhost.
+        'PORT': '', # Set to empty string for default.
+        'CONN_MAX_AGE': 600, # number of seconds database connections should persist for
     }
 }
 
