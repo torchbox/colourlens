@@ -9,5 +9,5 @@ fi
 alias dj="/home/vagrant/venv/bin/python /vagrant/manage.py"
 alias djrun="dj runserver 0.0.0.0:8000"
 
-source /vagrant/venv/bin/activate
+source /home/vagrant/venv/bin/activate
 cd /vagrant
