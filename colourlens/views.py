@@ -3,7 +3,6 @@ from django.db.models import Avg, Sum, Count
 from django import forms
 from django.forms.widgets import Input
 from django.shortcuts import render
-from django.views.decorators.cache import cache_page
 from colourlens.models import Artwork, Colour
 
 PROM_ATTRS = {'min': '0', 'max': '100', 'step': '5'}
@@ -81,7 +80,6 @@ class ColourChoice(object):
             ])
 
 
-@cache_page(60 * 60)
 def index(request, institution=False):
     """
     Search and browse colours
