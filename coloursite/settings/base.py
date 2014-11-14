@@ -82,6 +82,7 @@ STATICFILES_DIRS = (
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
     #  'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
@@ -121,6 +122,11 @@ TEMPLATE_CONTEXT_PROCESSORS = TCP + (
 )
 
 
+COMPRESS_PRECOMPILERS = (
+    ('text/x-scss', 'django_libsass.SassCompiler'),
+)
+
+
 INSTALLED_APPS = (
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -128,6 +134,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'compressor',
+
     'colourlens',
     #'debug_toolbar',
     # Uncomment the next line to enable the admin:

@@ -1,5 +1,7 @@
 Django<1.8
 psycopg2==2.5.4
+django-compressor==1.4
+django-libsass==0.2
 -e git://github.com/richbs/RoyGBiv.git#egg=roygbiv
 -e git://github.com/richbs/py-cooperhewitt-swatchbook.git#egg=cooperhewitt
 colormath<2
@@ -7,6 +9,7 @@ webcolors
 django-debug-toolbar
 feedparser
 beautifulsoup4
+
 # heroku
 gunicorn
 dj-static

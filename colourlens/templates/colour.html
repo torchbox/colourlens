@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load staticfiles %}
+{% load staticfiles compress %}
 
 
 {% block title %}Colour Lens{% endblock title %}
@@ -56,17 +56,22 @@
 
 
 {% block extrahead %}
-  <link rel="stylesheet" href="{% static 'jquery.fullPage.css' %}" type="text/css">
   <link href="http://fonts.googleapis.com/css?family=Quattrocento+Sans:400,700" rel="stylesheet" type="text/css">
-  <link href="{% static 'colourlens/style.css' %}" rel="stylesheet" type="text/css">
+
+  {% compress css %}
+    <link rel="stylesheet" href="{% static 'jquery.fullPage.css' %}" type="text/css">
+    <link href="{% static 'colourlens/main.scss' %}" rel="stylesheet" type="text/x-scss">
+  {% endcompress %}
 {% endblock %}
 
 
 {% block extrascript %}
-  <script src="{% static 'vendors/jquery.easings.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'jquery.fullPage.min.js' %}"></script>
-  <script type="text/javascript" src="{% static 'colourlens/main.js' %}"></script>
-  <script type="text/javascript">
-    window.totalPalette = {{ total_palette }};
-  </script>
+  {% compress js %}
+    <script src="{% static 'vendors/jquery.easings.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'jquery.fullPage.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'colourlens/main.js' %}"></script>
+    <script type="text/javascript">
+      window.totalPalette = {{ total_palette }};
+    </script>
+  {% endcompress %}
 {% endblock %}
