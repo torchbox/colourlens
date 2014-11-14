@@ -1,144 +1,29 @@
-* {
-  font-family: 'Quattrocento Sans', "HelveticaNeue-Thin", "Helvetica Neue Light", "Helvetica Neue", 
-  Helvetica, Arial, "Lucida Grande", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  color: #666;
+ul.colours {
+    list-style-type: none;
+
+    li {
+        display: inline-block;
+        margin: 0;
+        padding: 0;
+        height: 100px;
+
+        a {
+            display: block;
+            width: 100%;
+            height: 100%;
+            color: transparent;
+
+            &.selected {
+                border: 1px solid black;
+            }
+        }
+    }
 }
 
-body {
-  margin: 0;
-}
+ul.artwork-list {
+    list-style-type: none;
 
-#content {
-  max-width: 1228px;
-  margin: 0px auto;
-}
-
-#colour-list {
-}
-
-#colour-list a {
-  width: 100%;
-  height: 100%;
-  display: block;
-  color: transparent;
-  text-decoration: none;
-  visibility: hidden;
-}
-
-#colour-list a:hover {
-  font-weight: 800;
-  color: white;
-}
-
-#colour-list .selected {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-
-#colour-list > div, #colour-page > div {
-  height: 100px;
-  margin: 0;
-  padding: 0;
-  display: inline-block;
-}
-
-#colour-list span.selected {
-  width: 100%;
-  height: 3px;
-  margin: 6px auto 0 auto; 
-}
-
-#header * {
-  display: inline-block;
-  margin-right: 20px;
-}
-
-#header a {
-  color: #666;
-  font-weight: 800;
-  text-decoration: none;
-  padding-bottom: 3px;
-  margin-bottom: 6px;
-  border-bottom: 3px solid #666;
-}
-
-#institution-nav .selected {
-  color: #444;
-  border-bottom: 3px solid #F00;
-}
-
-.explorerGrid ul {
-  display: block;
-  width: 100%;
-}
-
-.explorerGrid li {
-  height: inherit;
-  min-height: 100px;
-  width: 133px;
-  max-height: 215px;
-  display: inline-block;
-  vertical-align: bottom;
-  font-size: 0.66em;
-  margin: 0 15px 2% 0;
-  padding: 0;
-}
-
-.explorerGrid li span {
-  font-size: 1em;
-}
-
-.explorerGrid li img {
-  min-height: 100px;
-  max-width: 133px;
-}
-
-.explorerGrid h3 {
-  height: 12px;
-}
-
-.explorerGrid p {
-  height: 12px;
-}
-
-.explorerGrid span {
-  height: 12px;
-}
-
-.explorerWorks {
-  padding: 0;
-}
-
-.grid-work-image {
-  padding: 0;
-}
-
-.grid-work-image a {
-  display: block;
-  height: 133px;
-  width: 133px;
-  overflow: hidden;
-  background-position: 50% 50%;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
-
-.grid-work-image a img {
-  visibility: hidden;
-}
-
-p.signature span {
-  height: 15px;
-  display: inline-block;
-}
-
-p.signature {
-  height: 15px;
-  margin: 9px 0 0 0;
-}
-
-.tableCell {
-  vertical-align: top;
+    li {
+        display: inline-block;
+    }
 }

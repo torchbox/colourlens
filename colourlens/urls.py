@@ -4,7 +4,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns(
-    '',
-    url(r'^$', 'colourlens.views.index', name='colour_index'),
-    url(r'^(?P<institution>[A-z& ]+)/?$', 'colourlens.views.index', name='colour_institution'),
+    'colourlens.views',
+    url(r'^$', 'index', name='index'),
+
+    url(r'^ajax/artworks/$', 'artwork_list', name='artwork_list'),
+    url(r'^ajax/artwork/(\w+)/$', 'artwork_info', name='artwork_info'),
 )

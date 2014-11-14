@@ -1,0 +1,7 @@
+{% for artwork in artworks %}
+    <li>
+        <a href="#" data-info-url="{% url 'artwork_info' artwork.accession_number %}">
+            <img alt="{{ artwork.institution }}: {{ artwork.artist }}: {{ artwork.title }} {{ artwork.year }}" src="{{ artwork.image_url }}">
+        </a>
+    </li>
+{% endfor %}
