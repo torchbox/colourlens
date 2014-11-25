@@ -1,0 +1,46 @@
+/**
+ * Author(s): James Morris
+ *
+ * MAIN
+ *
+ */
+/**
+ * CONTENTS
+ */
+/**
+ * CONTENTS.................You’re reading it!
+ * GLOBAL VALUES
+ *  Colours..................Colours!
+ *  Typography...............Styles and sizes
+ *  Grid vars................Define your grid
+ *  Spacing & Line height ...Margins, paddings etc.
+ */
+html, body, main {
+  height: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0; }
+
+ul.colours {
+  height: 100%;
+  list-style-type: none;
+  padding: 0;
+  margin: 0; }
+  ul.colours:after {
+    content: "";
+    display: table;
+    clear: both; }
+  ul.colours li {
+    float: left;
+    margin: 0;
+    padding: 0;
+    height: 100%; }
+    ul.colours li a {
+      display: block;
+      height: 100%;
+      color: transparent; }
+
+ul.artwork-list {
+  list-style-type: none; }
+  ul.artwork-list li {
+    display: inline-block; }

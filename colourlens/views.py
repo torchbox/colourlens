@@ -6,11 +6,16 @@ from colourlens.models import Artwork, Colour
 
 def index(request):
     colours = Colour.objects.all()
-    colour_width = 99.4 /  colours.count()
+
+    try:
+        colour_width = 99.4 /  colours.count()
+    except ZeroDivisionError:
+        colour_width = 0
 
     return render(request, 'index.html', {
         'colours': colours,
         'colour_width': colour_width,
+        'colours_count': colours.count()
     })
 
 

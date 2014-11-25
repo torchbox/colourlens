@@ -1,0 +1,83 @@
+/**
+ * Author(s): James Morris
+ *
+ * MAIN
+ *
+ */
+/**
+ * CONTENTS
+ */
+/**
+ * CONTENTS.................You’re reading it!
+ * GLOBAL VALUES
+ *  Colours..................Colours!
+ *  Typography...............Styles and sizes
+ *  Grid vars................Define your grid
+ *  Spacing & Line height ...Margins, paddings etc.
+ */
+/**
+ * Author(s): James Morris
+ *
+ * VARIABLES
+ *
+ */
+/**
+ * CONTENTS
+ */
+/**
+ * CONTENTS.................You’re reading it!
+ * GLOBAL VALUES
+ *  Colours..................Colours!
+ *  Typography...............Styles and sizes
+ *  Grid vars................Define your grid
+ *  Spacing & Line height ...Margins, paddings etc.
+ */
+/**
+ * $GLOBAL VALUES
+ */
+/* COLOURS */
+/* FONT SIZE */
+html, body, main {
+  height: 100%;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px; }
+
+.colour-selector {
+  height: 100%; }
+  .colour-selector ul.colours {
+    height: 100%;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    position: relative; }
+    .colour-selector ul.colours:after {
+      content: "";
+      display: table;
+      clear: both; }
+    .colour-selector ul.colours li {
+      float: left;
+      display: block;
+      margin: 0;
+      padding: 0;
+      height: 100%; }
+      .colour-selector ul.colours li a {
+        display: block;
+        height: 100%;
+        color: transparent; }
+      .colour-selector ul.colours li.cloned {
+        z-index: 100;
+        bottom: 0.25em;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        padding: 0.25em;
+        display: block;
+        -webkit-transition: padding ease 0.5s;
+        -moz-transition: padding ease 0.5s;
+        transition: padding ease 0.5s; }
+
+ul.artwork-list {
+  list-style-type: none; }
+  ul.artwork-list li {
+    display: inline-block; }

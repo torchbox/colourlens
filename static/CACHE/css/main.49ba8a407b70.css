@@ -1,0 +1,19 @@
+ul.colours {
+  list-style-type: none; }
+  ul.colours li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    height: 100px; }
+    ul.colours li a {
+      display: block;
+      width: 100%;
+      height: 100%;
+      color: transparent; }
+      ul.colours li a.selected {
+        border: 1px solid black; }
+
+ul.artwork-list {
+  list-style-type: none; }
+  ul.artwork-list li {
+    display: inline-block; }

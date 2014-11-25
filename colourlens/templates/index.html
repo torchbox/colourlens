@@ -5,55 +5,60 @@
 
 
 {% block content %}
-    <ul class="colours">
-        {% for colour in colours %}
-            <li style="width: {{ colour_width|floatformat:2 }}%; background-color: {{ colour.hex_value }};">
-                <a href="#" data-hex-value="{{ colour.hex_value }}">{{ colour }}</a>
-            </li>
-        {% endfor %}
-    </ul>
-
-    <ul class="artwork-list">
-    </ul>
-
-    <div class="artwork-info">
-    </div>
+    <section class="colour-selector">
+        <ul class="colours">
+            {% for colour in colours %}
+                <li style="width: {{ colour_width|floatformat:2 }}%; background-color: {{ colour.hex_value }};">
+                    <a href="#" data-hex-value="{{ colour.hex_value }}">{{ colour }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="mag-glass">
+            <h2><span>C</span><span>o</span><span>l</span><span>o</span><span>u</span><span>r</span> <span class="search">Search</span></h2>
+        </div>
+    </section>
+    <section class="artwork-container">
+        <ul class="artwork-list">
+        </ul>
+    </section>
+    <section classs="info-panel"> 
+        <div class="artwork-info">
+        </div>
+    </section>
 {% endblock %}
 
 {% block extra_js %}
     <script type="text/javascript">
         $(function() {
-            var selectedColours = [];
+              //Opens selectors colour and returned artwork
+              $(document).on('click','ul.colours li.cloned a' ,function(e) {
+                  // var $link = $(this);
+                  // // Toggle selected
+                  // $link.toggleClass('selected');
 
-            $('ul.colours a').click(function(e) {
-                var $link = $(this);
+                  // // Reload artwork list
+                  // var selectedColours = $('ul.colours a.selected').map(function(i, colourLink) {
+                  //     return $(colourLink).data('hexValue').replace('#', '');
+                  // }).toArray();
+                  // var URL = '{% url "artwork_list" %}?colour=' + selectedColours.join('&colour=');
 
-                // Toggle selected
-                $link.toggleClass('selected');
+                  // $('ul.artwork-list').load(URL, function() {
+                  //     // Add onclick event handler to artworks
+                  //     $('ul.artwork-list a').click(function(e) {
+                  //         var $link = $(this);
 
-                // Reload artwork list
-                var selectedColours = $('ul.colours a.selected').map(function(i, colourLink) {
-                    return $(colourLink).data('hexValue').replace('#', '');
-                }).toArray();
-                var URL = '{% url "artwork_list" %}?colour=' + selectedColours.join('&colour=');
+                  //         // Load artwork info
+                  //         var infoURL = $link.data('infoUrl');
+                  //         $('div.artwork-info').load(infoURL);
 
-                $('ul.artwork-list').load(URL, function() {
-                    // Add onclick event handler to artworks
-                    $('ul.artwork-list a').click(function(e) {
-                        var $link = $(this);
+                  //         e.preventDefault();
+                  //     });
+                  // });
 
-                        // Load artwork info
-                        var infoURL = $link.data('infoUrl');
-                        $('div.artwork-info').load(infoURL);
+                  
 
-                        e.preventDefault();
-                        return false;
-                    });
-                });
-
-                e.preventDefault();
-                return false;
-            });
+                  e.preventDefault();
+              });
         });
     </script>
 {% endblock %}

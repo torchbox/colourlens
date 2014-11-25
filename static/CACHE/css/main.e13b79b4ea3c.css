@@ -1,0 +1,21 @@
+html, body, main {
+  height: 100%;
+  margin: 0;
+  padding: 0; }
+
+ul.colours {
+  height: 100%;
+  list-style-type: none; }
+  ul.colours li {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    height: 100%; }
+    ul.colours li a {
+      display: block;
+      color: transparent; }
+
+ul.artwork-list {
+  list-style-type: none; }
+  ul.artwork-list li {
+    display: inline-block; }

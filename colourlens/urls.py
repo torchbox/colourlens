@@ -8,5 +8,5 @@ urlpatterns = patterns(
     url(r'^$', 'index', name='index'),
 
     url(r'^ajax/artworks/$', 'artwork_list', name='artwork_list'),
-    url(r'^ajax/artwork/(\w+)/$', 'artwork_info', name='artwork_info'),
+    url(r'^ajax/artworks/(\w+)/$', 'artwork_info', name='artwork_info'),
 )

@@ -1,0 +1,115 @@
+/**
+ * Author(s): James Morris
+ *
+ * MAIN
+ *
+ */
+
+/**
+ * CONTENTS
+ */
+
+/**
+ * CONTENTS.................You’re reading it!
+ * GLOBAL VALUES
+ *  Colours..................Colours!
+ *  Typography...............Styles and sizes
+ *  Grid vars................Define your grid
+ *  Spacing & Line height ...Margins, paddings etc.
+ */
+
+@import "vars.scss";
+@import "bourbon/bourbon.scss";
+
+html,
+body, 
+main {
+    height: 100%;
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: $sizeM;
+}
+
+header.site-header {
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.colour-selector {
+    height: 100%;
+    position: relative;
+    ul.colours {
+        height: 100%;
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        @include clearfix;
+        li {
+            float: left;
+            display: block;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            a {
+                display: block;
+                height: 100%;
+                color: transparent;
+            }
+            &.cloned {
+                z-index: 100;
+                top: -0.25em;
+                box-shadow: 0 0 15px $colorBlackT50;
+                padding: 0.25em;
+                display: block;
+                @include transition(padding ease 0.5s);
+            }
+        }
+    }    
+}
+
+.mag-glass {
+    width: 355px;
+    height: 355px;
+    border: 12px solid $colorWhite;
+    background-color: $colorWhiteT50;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    margin-left: -177px;
+    @include border-top-radius(50%);
+    @include border-left-radius(50%);
+    @include border-bottom-radius(50%);
+    @include border-right-radius(50%);
+    &:after {
+        content: "";
+        background-color: $colorWhite;
+        width: 60px;
+        height: 220px;
+        position: absolute;
+        bottom: -136px;
+        right: -66px;
+        @include transform(rotate(135deg));
+    }
+    h2 {
+        text-align: center;
+        margin-top: 40%;
+        font-size: $sizeL;
+        text-transform: lowercase;
+    }
+    .search {
+        display: block;
+        text-transform: uppercase;
+        font-size: $sizeS;
+    }
+}
+
+
+ul.artwork-list {
+    list-style-type: none;
+
+    li {
+        display: inline-block;
+    }
+}
