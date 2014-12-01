@@ -13,3 +13,6 @@ src
 *.bak
 *~
 *.swp
+
+/.vagrant
+/static
