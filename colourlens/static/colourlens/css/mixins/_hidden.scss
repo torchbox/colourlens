@@ -1,0 +1,7 @@
+/* FOR HIDDEN TEXT */
+@mixin hidden {
+  height: 1px; /* Some older browsers don't support 0px high block elements */
+  height: 0px;
+  overflow: hidden;
+  text-indent: -9999%;
+}
