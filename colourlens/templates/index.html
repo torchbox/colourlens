@@ -6,23 +6,91 @@
 
 {% block content %}
     <section class="colour-selector">
-        <ul class="colours">
-            {% for colour in colours %}
-                <li style="width: {{ colour_width|floatformat:2 }}%; background-color: {{ colour.hex_value }};">
-                    <a href="#" data-hex-value="{{ colour.hex_value }}">{{ colour }}</a>
-                </li>
-            {% endfor %}
-        </ul>
-        <div class="mag-glass">
-            <h2><span>C</span><span>o</span><span>l</span><span>o</span><span>u</span><span>r</span> <span class="search">Search</span></h2>
+        <div class="tabs-container">
+            <ul class="tabs">
+                <li><a href="#colour-search">Colour search</a></li>
+                <li><a href="#colour-data">Colour data</a></li>
+            </ul>
+        </div>
+        <div id="colour-search">
+            <ul class="colours">
+                {% for colour in colours %}
+                    <li style="width: {{ colour_width|floatformat:2 }}%; background-color: {{ colour.hex_value }}; color: {{ colour.hex_value }}">
+                        <a href="#" data-hex-value="{{ colour.hex_value }}">{{ colour }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            <div class="mag-glass">
+                <h2><span>C</span><span>o</span><span>l</span><span>o</span><span>u</span><span>r</span> <span class="search">Search</span></h2>
+            </div>
+        </div>
+        <div id="colour-data">
+            <ul class="colours">
+                {% for colour in colours %}
+                    <li style="width: {{ colour_width|floatformat:2 }}%; background-color: {{ colour.hex_value }};">
+                        <a href="#" data-hex-value="{{ colour.hex_value }}">{{ colour }}</a>
+                    </li>
+                {% endfor %}
+            </ul>
         </div>
     </section>
     <section class="artwork-container">
-        <ul class="artwork-list">
+        <ul id="art-work" class="artwork-list">
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>              
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>                      
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>                              
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>              
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>                      
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>                              
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
+            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
         </ul>
     </section>
-    <section classs="info-panel"> 
-        <div class="artwork-info">
+    <section class="info-panel"> 
+        <div class="artwork-container">
+            <div class="arrow"></div>
+            <div class="artwork">
+                <img class="artwork-img" src="http://placehold.it/400x400" />
+            </div>
+            <div class="artwork-info">
+                <table cellspacing="0">
+                    <tr>
+                        <th> </th>
+                        <th class="details"><h2 class="artist">Title</h2>
+                    <h2 class="work-title">Work title <span class="date">YYYY</span></h2></th>
+                    </tr>
+                    <tr> 
+                        <td>Medium</td>
+                        <td>Blah blah blah blah blah blah blah. Blah blah blah blah blah blah blah</td>
+                    </tr>
+                    <tr> 
+                        <td>Dimentions</td>
+                        <td>Support: 864 x 2870 mm</td>
+                    </tr>
+                    <tr> 
+                        <td>Collection</td>
+                        <td>Tate</td>
+                    </tr>
+                    <tr> 
+                        <td>Acquistion</td>
+                        <td>Purchased with assitance from the Friends of the Tate Gallery 1962</td>
+                    </tr>
+                    <tr> 
+                        <td>Reference</td>
+                        <td>T00540</td>
+                    </tr>
+                </table>
+                <div class="hex-colors">
+                    <div class="hex-color">
+                        HEX COLOURS HERE
+                    </div>
+                    <a href="">Download as hex</a>
+                </div>
+            </div>
         </div>
     </section>
 {% endblock %}
@@ -31,29 +99,29 @@
     <script type="text/javascript">
         $(function() {
               //Opens selectors colour and returned artwork
-              $(document).on('click','ul.colours li.cloned a' ,function(e) {
-                  // var $link = $(this);
-                  // // Toggle selected
-                  // $link.toggleClass('selected');
+              $(document).on('click','ul.colours li a' ,function(e) {
+                  var $link = $(this);
+                  // Toggle selected
+                  $link.toggleClass('selected');
 
-                  // // Reload artwork list
-                  // var selectedColours = $('ul.colours a.selected').map(function(i, colourLink) {
-                  //     return $(colourLink).data('hexValue').replace('#', '');
-                  // }).toArray();
-                  // var URL = '{% url "artwork_list" %}?colour=' + selectedColours.join('&colour=');
+                  // Reload artwork list
+                  var selectedColours = $('ul.colours a.selected').map(function(i, colourLink) {
+                      return $(colourLink).data('hexValue').replace('#', '');
+                  }).toArray();
+                  var URL = '{% url "artwork_list" %}?colour=' + selectedColours.join('&colour=');
 
-                  // $('ul.artwork-list').load(URL, function() {
-                  //     // Add onclick event handler to artworks
-                  //     $('ul.artwork-list a').click(function(e) {
-                  //         var $link = $(this);
+                  $('ul.artwork-list').load(URL, function() {
+                      // Add onclick event handler to artworks
+                      $('ul.artwork-list a').click(function(e) {
+                          var $link = $(this);
 
-                  //         // Load artwork info
-                  //         var infoURL = $link.data('infoUrl');
-                  //         $('div.artwork-info').load(infoURL);
+                          // Load artwork info
+                          var infoURL = $link.data('infoUrl');
+                          $('div.artwork-info').load(infoURL);
 
-                  //         e.preventDefault();
-                  //     });
-                  // });
+                          e.preventDefault();
+                      });
+                  });
 
                   
 

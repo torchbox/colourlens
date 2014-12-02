@@ -19,10 +19,7 @@
     </head>
     <body id="{% block body_id %}{% endblock body_id %}" class="{% block body_class %}{% endblock %} ui-status-splash">
         <header class="site-header">
-            <h1 class="logo">Tate</h1>
-            <ul class="tabs">
-                 
-            </ul>
+            <a href="/"><h1 class="logo">Tate</h1></a>
         </header>
         <main>
             {% block content %}{% endblock %}
@@ -34,7 +31,7 @@
         {% compress js %}
             <script type="text/javascript" src="{% static 'colourlens/js/jquery.min.js' %}"></script>
             <script type="text/javascript" src="{% static 'colourlens/js/jquery-ui.min.js' %}"></script>
-            <script type="text/javascript" src="{% static 'colourlens/js/main.js' %}"></script>
+            <script type="text/javascript" src="{% static 'colourlens/js/main.js' %}"></script>           
         {% endcompress %}
 
         {% block extra_js %}

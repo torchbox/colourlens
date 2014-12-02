@@ -19,7 +19,13 @@
  */
 
 @import "vars.scss";
+@import "mixins/mixins.scss";
 @import "bourbon/bourbon.scss";
+
+body {
+    font-family: $fontHel;
+    -webkit-font-smoothing: antialiased;
+}
 
 html,
 body, 
@@ -31,16 +37,41 @@ main {
     font-size: $sizeM;
 }
 
+/* HEADER */
+
 header.site-header {
     max-width: 1400px;
     margin: 0 auto;
+    height: 70px;
+    position: relative;
+    @include clearfix;
+}
+
+header.site-header a {
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    h1.logo {
+        background-image: url('#{$staticPath}images/logo.jpg');
+        background-size: 100% 100%;
+        @include hidden;
+        width: 70px;
+        height: 29px;
+    }
+}
+
+/* LINKS */
+
+a {
+    text-decoration: none;
 }
 
 .colour-selector {
-    height: 100%;
     position: relative;
+    margin-top: -40px;
     ul.colours {
-        height: 100%;
         list-style-type: none;
         padding: 0;
         margin: 0;
@@ -51,10 +82,20 @@ header.site-header {
             display: block;
             margin: 0;
             padding: 0;
-            height: 100%;
+            height: 0;
+            opacity: 1;
+            &.selected:after {
+                content: "\25BC";
+                color: inherit;
+                width: inherit;
+                display: none;
+                font-size: 0.8em;
+                text-align: center;
+                margin-top: 0.1em;
+            }
             a {
-                display: block;
                 height: 100%;
+                display: block;
                 color: transparent;
             }
             &.cloned {
@@ -66,16 +107,59 @@ header.site-header {
                 @include transition(padding ease 0.5s);
             }
         }
-    }    
+    }
+}
+
+.ui-status-artwork-pick ul.colours li {
+    opacity: 0.2;
+     @include transition(opacity ease 0.5s);    
+    &.selected {
+        opacity: 1;
+        &:after {
+            display: block;
+        }
+    }
+}
+
+.colour-selector .tabs-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    @include clearfix;
+    .tabs {
+        list-style: none;
+        float: right;
+        margin-bottom: 0;
+        li {
+            opacity: 0.25;
+            float: left;
+            margin-right: 0;
+            &:first-child {
+                a {
+                    border-right: none;
+                }
+            }
+            &.ui-state-active {
+                opacity: 1;
+            }
+            a {
+                display: block;
+                color: $colorBlack;
+                padding: 0.4em 0.8em;
+                border-top: 1px solid $colorBlack;
+                border-left: 1px solid $colorBlack;
+                border-right: 1px solid $colorBlack;
+            }
+        }
+    }
 }
 
 .mag-glass {
     width: 355px;
     height: 355px;
     border: 12px solid $colorWhite;
-    background-color: $colorWhiteT50;
+    background-color: $colorWhiteT70;
     position: absolute;
-    top: 40%;
+    top: 20%;
     left: 50%;
     margin-left: -177px;
     @include border-top-radius(50%);
@@ -94,22 +178,158 @@ header.site-header {
     }
     h2 {
         text-align: center;
-        margin-top: 40%;
-        font-size: $sizeL;
+        margin-top: 35%;
+        font-size: $sizeXL;
         text-transform: lowercase;
+        letter-spacing: 0.03em;
     }
     .search {
         display: block;
         text-transform: uppercase;
-        font-size: $sizeS;
+        font-size: 0.26em;
+    }
+    //Letter C
+    span:nth-child(1) {
+        color: $colorPink;
+    }
+    //Letter o
+    span:nth-child(2) {
+        color: $colorOrange;
+    }
+    //Letter l
+    span:nth-child(3) {
+        color: $colorSalmon;
+    }
+    //Letter o
+    span:nth-child(4) {
+        color: $colorSky;
+    }
+    //Letter u
+    span:nth-child(5) {
+        color: $colorSlate;
+    }
+    //Letter r
+    span:nth-child(6) {
+        color: $colorGreen;
     }
 }
 
 
 ul.artwork-list {
-    list-style-type: none;
-
+    list-style-type:none;
+    white-space:nowrap;
+    overflow-x: auto;
+    padding-left: 0;
+    margin-top: 2em;
     li {
         display: inline-block;
+        width: 200px;
+        margin-right: 1.1em;
+        &:last-child {
+            margin-right: 0;
+        }
+        img {
+            display: block;
+            margin-bottom: 0.8em;
+        }
+        span {
+            width: 100%;
+            display: block;
+            margin-bottom: 0.6em;
+        }
     }
 }
+
+.info-panel {
+    width: 100%;
+    background-color: $colorOffBlack;
+    padding: 3em 0;
+    position: relative;
+    .artwork-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        @include clearfix;
+    }
+    .arrow {
+        width: 0px;
+        height: 0px;
+        border-style: solid;
+        border-width: 20px 12px 0 12px;
+        border-color: $colorWhite transparent transparent transparent;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        margin-right: -10px;
+    }
+    .artwork {
+        width: 45%;
+        margin-right: 5%;   
+    }
+    .artwork-img {
+        float: left;
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+    }
+    .details {
+        color: $colorOffWhite;
+        font-weight: 400;
+    }
+    //Table
+    .artwork-info {
+        width: 50%;
+        max-width: 400px;
+        float: right;
+        border-collapse: collapse;
+        color: $colorOffWhite;
+        th {
+            text-align: left;
+        }
+        tr:first-child th {
+            border-bottom: 1px solid $colorOffWhite;
+            padding-bottom: 0.5em;
+        }
+        tr:nth-child(2) td {
+            padding-top: 0.5em;
+        }
+        tr td:first-child {
+            color: $colorLightGrey;
+            text-align: right;
+            vertical-align: top;
+        }
+        th,
+        td {
+            padding: 0.3em 0.45em;
+        }
+    }
+    .artist,
+    .work-title {
+        margin: 0;
+    }
+    .work-title {
+        font-weight: 100;
+        span {
+            font-size: 0.5em;
+        }
+    }
+    .hex-colors {
+        margin-top: 2em;
+        max-width: 400px;
+        @include clearfix;
+        a {
+            color: $colorOffWhite;
+            margin-top: 0.5em;
+            display: block;
+            float: right;
+            &:hover {
+                text-decoration: underline;
+            }
+            &:after {
+                content: "";
+                background: url('#{$staticPath}/images/download-arrow.jpg') no-repeat center right;
+                padding-right: 1.75em;
+            }
+        }
+    }
+}
+
