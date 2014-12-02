@@ -13,3 +13,4 @@ src
 *.bak
 *~
 *.swp
+static/CACHE/*
