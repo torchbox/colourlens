@@ -5,7 +5,7 @@ from colourlens.models import Artwork, Colour
 
 
 def index(request):
-    colours = Colour.objects.all()
+    colours = Colour.objects.all().order_by('hue')
 
     try:
         colour_width = 99.4 /  colours.count()
