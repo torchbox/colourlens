@@ -1,8 +1,41 @@
-<h2>{{ artwork.title }}</h2>
-
-<p>
-    Artist: {{ artwork.artist }}<br>
-    Year: {{ artwork.year }}
-</p>
-
-<img alt="{{ artwork.institution }}: {{ artwork.artist }}: {{ artwork.title }} {{ artwork.year }}" src="{{ artwork.image_url }}">
+<div class="artwork-content">
+    <div class="arrow"></div>
+    <div class="artwork">
+        <img class="artwork-img" alt="{{ artwork.institution }}: {{ artwork.artist }}: {{ artwork.title }} {{ artwork.year }}" src="{{ artwork.image_url }}">
+    </div>
+    <div class="artwork-info">
+        <table cellspacing="0">
+            <tr>
+                <th> </th>
+                <th class="details"><h2 class="artist">{{ artwork.artist }}</h2>
+            <h2 class="work-title">{{ artwork.title }} <span class="date">{{ artwork.year }}</span></h2></th>
+            </tr>
+            <tr> 
+                <td>Medium</td>
+                <td>Blah blah blah blah blah blah blah. Blah blah blah blah blah blah blah</td>
+            </tr>
+            <tr> 
+                <td>Dimentions</td>
+                <td>Support: 864 x 2870 mm</td>
+            </tr>
+            <tr> 
+                <td>Collection</td>
+                <td>Tate</td>
+            </tr>
+            <tr> 
+                <td>Acquistion</td>
+                <td>Purchased with assitance from the Friends of the Tate Gallery 1962</td>
+            </tr>
+            <tr> 
+                <td>Reference</td>
+                <td>T00540</td>
+            </tr>
+        </table>
+        <div class="hex-colors">
+            <div class="hex-color">
+                HEX COLOURS HERE
+            </div>
+            <a href="">Download as hex</a>
+        </div>
+    </div>
+</div>

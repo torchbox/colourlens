@@ -35,63 +35,10 @@
         </div>
     </section>
     <section class="artwork-container">
-        <ul id="art-work" class="artwork-list">
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>              
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>                      
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>                              
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>              
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>                      
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>                              
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
-            <li><img src="http://placehold.it/200x200" alt="image" /><span class="hex-color">HEX COLOURS HERE</span></li>
-        </ul>
+
     </section>
     <section class="info-panel"> 
-        <div class="artwork-container">
-            <div class="arrow"></div>
-            <div class="artwork">
-                <img class="artwork-img" src="http://placehold.it/400x400" />
-            </div>
-            <div class="artwork-info">
-                <table cellspacing="0">
-                    <tr>
-                        <th> </th>
-                        <th class="details"><h2 class="artist">Title</h2>
-                    <h2 class="work-title">Work title <span class="date">YYYY</span></h2></th>
-                    </tr>
-                    <tr> 
-                        <td>Medium</td>
-                        <td>Blah blah blah blah blah blah blah. Blah blah blah blah blah blah blah</td>
-                    </tr>
-                    <tr> 
-                        <td>Dimentions</td>
-                        <td>Support: 864 x 2870 mm</td>
-                    </tr>
-                    <tr> 
-                        <td>Collection</td>
-                        <td>Tate</td>
-                    </tr>
-                    <tr> 
-                        <td>Acquistion</td>
-                        <td>Purchased with assitance from the Friends of the Tate Gallery 1962</td>
-                    </tr>
-                    <tr> 
-                        <td>Reference</td>
-                        <td>T00540</td>
-                    </tr>
-                </table>
-                <div class="hex-colors">
-                    <div class="hex-color">
-                        HEX COLOURS HERE
-                    </div>
-                    <a href="">Download as hex</a>
-                </div>
-            </div>
-        </div>
+
     </section>
 {% endblock %}
 
@@ -102,22 +49,23 @@
               $(document).on('click','ul.colours li a' ,function(e) {
                   var $link = $(this);
                   // Toggle selected
-                  $link.toggleClass('selected');
+                  $link.parent().addClass('selected');
 
                   // Reload artwork list
-                  var selectedColours = $('ul.colours a.selected').map(function(i, colourLink) {
+                  var selectedColours = $('ul.colours li.selected a').map(function(i, colourLink) {
                       return $(colourLink).data('hexValue').replace('#', '');
                   }).toArray();
                   var URL = '{% url "artwork_list" %}?colour=' + selectedColours.join('&colour=');
 
-                  $('ul.artwork-list').load(URL, function() {
+                  $('.artwork-container').load(URL, function() {
+
                       // Add onclick event handler to artworks
                       $('ul.artwork-list a').click(function(e) {
                           var $link = $(this);
 
                           // Load artwork info
                           var infoURL = $link.data('infoUrl');
-                          $('div.artwork-info').load(infoURL);
+                          $('.info-panel').load(infoURL);
 
                           e.preventDefault();
                       });
